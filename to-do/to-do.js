@@ -29,8 +29,12 @@ const loadDB = () => {
  * Function that creates an object from the arguments
  * @param {String} description - argument of the command line
  */
-const create = (description) => {
+const createList = (description) => {
     loadDB();
+
+    if (checkIfExists(description)) {
+        return null;
+    }
 
     let toDo = {
         description,
@@ -58,9 +62,33 @@ const getList = () => {
     return listToDo;
 }
 
+const updateList = (description, complete = true) => {
+    loadDB();
+
+    listToDo.forEach((value) => {
+        if (description == value.description) {
+            value.completed = complete;
+        }
+    });
+
+    storeDB();
+}
+
+const checkIfExists = (description) => {
+    loadDB();
+
+    for (let i of listToDo) {
+        if (i.description.localeCompare(description) == 0) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 
 module.exports = {
-    create,
-    getList
+    createList,
+    getList,
+    updateList
 }
