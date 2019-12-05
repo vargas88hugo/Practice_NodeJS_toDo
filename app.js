@@ -13,8 +13,13 @@ let command = argv._[0];
 // Menu
 switch( command ) {
     case 'create':
-        let task = toDo.create(argv.description);
-        console.log(task);
+        let task = toDo.createList(argv.description);
+
+        if (task != null) {
+            console.log(task);
+        } else {
+            console.log('Description already exists please enter another\n'.red);
+        }
         break;
     case 'list':
         let list = toDo.getList();
@@ -27,7 +32,7 @@ switch( command ) {
         
         break;
     case 'update':
-        console.log('update');
+        toDo.updateList(argv.description, argv.complete);
         break;
     default:
         console.log('unrecognized command');
