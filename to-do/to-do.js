@@ -62,18 +62,38 @@ const getList = () => {
     return listToDo;
 }
 
+/**
+ * This function consists in update the object of array if exists, specifically
+ * the field complete
+ * @param {String} description - description to be searched in the array 
+ * @param {boolean} complete - field to be updated in the object
+ * @return {boolean} true if the description exists or false otherwise
+ */
 const updateList = (description, complete = true) => {
     loadDB();
 
-    listToDo.forEach((value) => {
-        if (description == value.description) {
-            value.completed = complete;
-        }
-    });
+    let chek = checkIfExists(description);
+
+    if (chek == true) {
+        listToDo.forEach((value) => {
+            if (description == value.description) {
+                value.completed = complete;
+            }
+        });
+        return true;
+    } else {
+        return false;
+    }
 
     storeDB();
 }
 
+/**
+ * This function consists in checking if the description passed to the
+ * argument exists in the array
+ * @param {String} description - description to be checked
+ * @return {boolean} true if the description exists or false otherwise
+ */
 const checkIfExists = (description) => {
     loadDB();
 
@@ -86,9 +106,30 @@ const checkIfExists = (description) => {
     return false;
 }
 
+/**
+ * This function consists in delete a task if exists
+ * @param {String} description - description of the task 
+ * @return {boolean} true if it could deleted or false otherwise
+ */
+const deleteObject = (description) => {
+    loadDB();
+
+    let newList = listToDo.filter(task => {
+        return task.description != description  
+    });
+
+    if (newList.length === listToDo.length) {
+        return false;
+    } else {
+        listToDo = newList;
+        storeDB();
+        return true;
+    }
+}
 
 module.exports = {
     createList,
     getList,
-    updateList
+    updateList,
+    deleteObject
 }
