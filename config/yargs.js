@@ -21,6 +21,13 @@ const argv = require('yargs')
                         desc: 'Mark completed a to do task'
                     }
                 })
+                .command('delete', 'Delete a task', {
+                    description: {
+                        demand: true,
+                        alias: 'd',
+                        desc: 'Marf of the task to be deleted'
+                    }
+                })
                 .help()
                 .argv;
 
