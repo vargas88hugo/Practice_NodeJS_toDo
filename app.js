@@ -36,7 +36,7 @@ switch( command ) {
         if (foo == true) {
             console.log(('The task ' + argv.description + ' has been updated.\n'). green);
         } else {
-            console.log('Description not found.'.red);
+            console.log('Description not found.\n'.red);
         }
         break;
     case 'delete':
