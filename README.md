@@ -1,6 +1,6 @@
 # Weather app
 
-This is a simple To Do app that adds, updates, lists and deletes the tasks entered in the command line. It is my introduction with NodeJS. For this project I use yargs and colors packages.
+This is a simple To Do app that adds, updates, lists and deletes the tasks entered in the command line and creates persistence with a json file. It is my introduction with NodeJS. For this project I used yargs and colors packages.
 
 ## Requirements
 
