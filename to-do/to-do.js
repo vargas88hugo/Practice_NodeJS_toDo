@@ -80,12 +80,11 @@ const updateList = (description, complete = true) => {
                 value.completed = complete;
             }
         });
+        storeDB();
         return true;
     } else {
         return false;
     }
-
-    storeDB();
 }
 
 /**
